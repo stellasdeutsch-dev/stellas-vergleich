@@ -11,6 +11,7 @@ src = (root / "index.html").read_text(encoding="utf-8")
 
 lite = re.sub(r"<!--AD-->.*?<!--/AD-->", "", src, flags=re.S)
 lite = re.sub(r"<!--LITE:(.*?):LITE-->", r"\1", lite, flags=re.S)
+lite = lite.replace('src="app.js"', 'src="../app.js"')
 for attr in ("src", "href", "poster", "content"):
     lite = lite.replace(f'{attr}="media/', f'{attr}="../media/').replace(f'{attr}="vendor/', f'{attr}="../vendor/')
 lite = lite.replace("<title>Сравнительные предложения в немецком — Stellas</title>",
